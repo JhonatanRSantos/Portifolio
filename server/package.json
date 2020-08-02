@@ -1,0 +1,12 @@
+{
+  "name": "portifolio-webserver",
+  "version": "1.0.0",
+  "description": "Portifolio web server application",
+  "main": "index.js",
+  "author": "Jhonatan R. Santos",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
