@@ -18,8 +18,9 @@ const Feed: React.FC = () => {
           description="My first post on my personal website"
           // imageUrl={BannerPicture}
           date={1598493796035}
+          isLast={true}
           />
-      </Tweets>
+      </Tweets>      
     </Container>
   );
 };

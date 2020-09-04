@@ -6,11 +6,15 @@ import {
 
 import ProfilePicture from '../../assets/images/profilePicture.jpeg';
 
+interface ContainerProps {
+  isLast: boolean;
+}
+
 interface ImageContentProps {
   imageUrl: string;
 }
 
-export const Container = styled.div`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
 
@@ -19,6 +23,11 @@ export const Container = styled.div`
   border-bottom: 1px solid var(--outline);
   max-width: 100%;
   min-height: 85px;
+
+  ${(props) => props.isLast && css`
+    margin-bottom: 48px;
+    border-bottom: none;
+  `}
 `;
 
 export const Retweeted = styled.div`

@@ -23,15 +23,16 @@ interface Props {
   description: string;
   imageUrl?: any;
   date: number;
+  isLast?: boolean;
 }
-const Tweet: React.FC<Props> = ({ name, nickname, description, imageUrl, date}) => {
+const Tweet: React.FC<Props> = ({ name, nickname, description, imageUrl, date, isLast = false}) => {
   
   const formatDate = useCallback((date: number): string => {
     return moment(date).tz('America/Sao_paulo').format('MM / DD / YYYY HH:mm');
   }, []);
 
   return (
-    <Container>
+    <Container isLast={isLast}>
       {/* 
       <Retweeted>
         Top description

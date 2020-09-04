@@ -29,11 +29,4 @@ export const Tweets = styled.div`
   flex-direction: column;
 
   flex-shrink: 0;
-
-  &:last-child {    
-    margin-bottom: 48px;
-    > div {
-      border-bottom: none;
-    }
-  }
 `;
