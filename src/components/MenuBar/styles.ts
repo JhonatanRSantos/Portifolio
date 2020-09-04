@@ -30,6 +30,7 @@ export const Container = styled.div`
   }
   
   min-height: 470px;
+  height: 100vh;
 `;
 
 export const Topside = styled.div`
