@@ -21,19 +21,21 @@ steps:
     script: |
       npm install -g yarn      
       yarn
+      ls
 
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'website_server'
-    sourceFolder: './build'
+    sourceFolder: '~/build'
     contents: '**'
     targetFolder: '~/build'
     readyTimeout: '20000'
 
+
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'website_server'
-    sourceFolder: './server'
+    sourceFolder: '~/server'
     contents: '**'
     targetFolder: '~/server'
     readyTimeout: '20000'
