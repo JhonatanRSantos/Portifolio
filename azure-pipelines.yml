@@ -21,7 +21,7 @@ steps:
     script: |
       npm install -g yarn      
       yarn
-      ls
+      pwd
 
 - task: CopyFilesOverSSH@0
   inputs:
