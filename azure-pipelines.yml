@@ -18,7 +18,19 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo "Command line"
+      dir=pwd
+      echo "Files from ${dir}"
+      ls
+  
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'website_server'
+    runOptions: 'commands'
+    commands: |
+      echo "########################################"
+      echo "#       PREPARING THE WEB SERVER       #"
+      echo "########################################"
+      
       pwd
-      ls      
-  displayName: 'Running command line'
+      ls
+    readyTimeout: '20000'
