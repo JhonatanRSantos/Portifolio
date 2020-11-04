@@ -10,6 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+ 
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -18,19 +19,44 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      dir=pwd
-      echo "Files from ${dir}"
-      ls
-  
+      npm install -g yarn      
+      yarn
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'website_server'
+    sourceFolder: './build'
+    contents: '**'
+    targetFolder: '~/build'
+    readyTimeout: '20000'
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'website_server'
+    sourceFolder: './server'
+    contents: '**'
+    targetFolder: '~/server'
+    readyTimeout: '20000'
+
 - task: SSH@0
   inputs:
     sshEndpoint: 'website_server'
     runOptions: 'commands'
     commands: |
-      echo "########################################"
-      echo "#       PREPARING THE WEB SERVER       #"
-      echo "########################################"
-      
-      pwd
-      ls
+      sudo pm2 stop all
+      sudo pm2 delete all
+
+      sudo rm -rf ~/www/portifolio
+      sudo mkdir -p ~/www/portifolio
+      sudo chmod -R 777 ./www
+
+      sudo mv ./build ~/www/portifolio
+      sudo mv ./server ~/www/portifolio
+
+      sudo yarn --cwd www/portifolio/server
+      sudo pm2 start www/portifolio/server/index.js --name \"portifolio-site\" -f
+
+      sudo pm2 startup
+      sudo pm2 save
     readyTimeout: '20000'
+  
