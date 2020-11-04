@@ -26,7 +26,7 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'website_server'
-    sourceFolder: '~/build'
+    sourceFolder: 'build'
     contents: '**'
     targetFolder: '~/build'
     readyTimeout: '20000'
@@ -35,7 +35,7 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'website_server'
-    sourceFolder: '~/server'
+    sourceFolder: 'server'
     contents: '**'
     targetFolder: '~/server'
     readyTimeout: '20000'
